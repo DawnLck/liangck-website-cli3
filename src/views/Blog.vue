@@ -13,7 +13,7 @@
                 <Col :xs="20" :sm="20" :md="16" :lg="12">
                     <Card :key="item.time" v-for="item in blogs" :style="{margin: '1rem 0'}">
                         <div>
-                            <h2 class="title">
+                            <h2 class="title" style="overflow: hidden">
                                 <Icon type="ios-paper" style="color: #333;"/>
                                 <a :href="item.url" v-text="item.title" target="_blank"></a>
                             </h2>

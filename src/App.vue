@@ -3,7 +3,7 @@
         <Layout :style="{paddingBottom: '12rem'}">
             <Header class="header">
                 <Row type="flex" justify="space-between">
-                    <Col :xs="24" :sm="24" :md="24" :lg="8" class="layout-logo">
+                    <Col :xs="20" :sm="20" :md="20" :lg="8" class="layout-logo">
                         云中的猫
                     </Col>
                     <Col :xs="0" :sm="0" :md="0" :lg="16">
@@ -32,25 +32,37 @@
                             </Menu>
                         </div>
                     </Col>
+                    <Col :xs="4" :sm="4" :md="4" :lg="0">
+                        <a href="#menu" id="toggle" @click="toggleMenu" :class="{on: toggleActive}"><span></span></a>
+                    </Col>
+                    <Col :xs="24" :sm="24" :md="24" :lg="0" id="toggleMenu" :class="{on: toggleActive}">
+                        <Divider v-show="toggleActive" :style="{margin: 0}"></Divider>
+                        <Menu mode="horizontal" theme="light" active-name="0" class="clearfix">
+                            <MenuItem :name="item.index" :to="item.route" v-for="item in menu" :key="item.index" class="toggleMenu-item">
+                                <Icon :type="item.icon"></Icon>
+                                <span v-text="item.name">
+                                </span>
+                            </MenuItem>
+                        </Menu>
+                    </Col>
                 </Row>
-
             </Header>
             <Layout class="content">
                 <router-view></router-view>
             </Layout>
             <Footer class="footer">
-                <Row :style="{backgroundColor:'white'}">
+                <Row type="flex" justify="center" :style="{backgroundColor:'white'}">
                     <Col :xs="0" :sm="0" :md="0" :lg="3">
                         <h2></h2>
                     </Col>
-                    <Col :xs="12" :sm="12" :md="12" :lg="4">
+                    <Col :xs="24" :sm="24" :md="24" :lg="4">
                         <h2>坐标</h2>
                         <p>
                             <Icon type="ios-navigate"/>
                             浙江 · 杭州
                         </p>
                     </Col>
-                    <Col :xs="12" :sm="12" :md="12" :lg="4">
+                    <Col :xs="24" :sm="24" :md="24" :lg="4">
                         <h2>我的联系方式</h2>
                         <p>
                             <Icon type="ios-mail"/>
@@ -80,13 +92,41 @@ export default {
   name: 'app',
   data: function () {
     return {
-      isCollapsed: true
+      isCollapsed: true,
+      toggleActive: false,
+      menu: [
+        {
+          index: 0,
+          name: '首页 | Home',
+          route: '/',
+          icon: 'ios-navigate'
+        },
+        {
+          index: 1,
+          name: '简历 | About Me',
+          route: '/about',
+          icon: 'md-information-circle'
+        },
+        {
+          index: 2,
+          name: '博客 | Blog',
+          route: '/blog',
+          icon: 'ios-analytics'
+        }
+      ]
+    }
+  },
+  methods: {
+    toggleMenu (e) {
+      console.log('Toggle ... ')
+      this.toggleActive = !this.toggleActive
     }
   }
 }
 </script>
 
 <style lang="scss">
+    $primary: #2d8cf0;
     #app {
         /*background: #f5f7f9;*/
         position: relative;
@@ -99,6 +139,7 @@ export default {
             box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .1);
             margin-bottom: 0;
             z-index: 999;
+            height: auto;
         }
         .content{
             min-height: 46rem;
@@ -154,5 +195,66 @@ export default {
 
     .ivu-menu-horizontal.ivu-menu-light:after {
         background: none !important;
+    }
+
+    #toggle {
+        display: block;
+        width: 28px;
+        height: 30px;
+        margin: 30px auto 10px;
+        span{
+            position: relative;
+            display: block;
+            &:after, &:before{
+                content: "";
+                position: absolute;
+                left: 0;
+                top: -9px;
+            }
+            &:after{
+                top: 9px;
+            }
+        }
+        span, span:before, span:after{
+            width: 100%;
+            height: .2rem;
+            background-color: #888;
+            transition: all 0.3s;
+            backface-visibility: hidden;
+            border-radius: 2px;
+        }
+        /* on activation */
+        &.on{
+            span{
+                background-color: transparent;
+                &:before{
+                    transform: rotate(45deg) translate(5px, 5px);
+                }
+                &:after{
+                    transform: rotate(-45deg) translate(7px, -8px);
+                }
+            }
+        }
+    }
+    #toggleMenu{
+        height: 0;
+        min-height: 0;
+        opacity: 0;
+        transition: height 600ms ease-out;
+        overflow: hidden;
+        border-top: 1px solid $primary;
+        &.on{
+            display: inline-block;
+            height: 10rem;
+            opacity: 1;
+        }
+        .toggleMenu-item{
+            width: 100%;
+            text-align: left;
+            margin: 0;
+            padding: 0;
+            height: 3rem;
+            line-height: 3rem;
+        }
     }
 </style>
