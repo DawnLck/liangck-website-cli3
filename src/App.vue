@@ -17,25 +17,25 @@
                                     <Icon type="md-information-circle"/>
                                     简历 | About Me
                                 </MenuItem>
-                                <MenuItem name="2" to="/project">
-                                    <Icon type="ios-keypad"></Icon>
-                                    项目 | Project
-                                </MenuItem>
+                                <!--<MenuItem name="2" to="/project">-->
+                                    <!--<Icon type="ios-keypad"></Icon>-->
+                                    <!--项目 | Project-->
+                                <!--</MenuItem>-->
                                 <MenuItem name="3" to="/blog">
                                     <Icon type="ios-analytics"></Icon>
                                     博客 | Blog
                                 </MenuItem>
-                                <MenuItem name="4" to="/lab">
-                                    <Icon type="ios-paper"></Icon>
-                                    实验 | Lab
-                                </MenuItem>
+                                <!--<MenuItem name="4" to="/lab">-->
+                                    <!--<Icon type="ios-paper"></Icon>-->
+                                    <!--实验 | Lab-->
+                                <!--</MenuItem>-->
                             </Menu>
                         </div>
                     </Col>
                 </Row>
 
             </Header>
-            <Layout :style="{backgroundColor:'white', minHeight: '46rem'}">
+            <Layout class="content">
                 <router-view></router-view>
             </Layout>
             <Footer class="footer">
@@ -96,8 +96,14 @@ export default {
 
         .header{
             background: white;
-            box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
-            margin-bottom: 3px;
+            box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .1);
+            margin-bottom: 0;
+            z-index: 999;
+        }
+        .content{
+            min-height: 46rem;
+            background: white;
+            box-shadow: 0 1px 2px 0 rgba(0,0,0,.1);
         }
         .footer {
             padding-top: 1rem;
