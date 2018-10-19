@@ -7,9 +7,8 @@
                         <div class="myresume">
                             <Row id="info_basic" :style="{height: '10rem'}" class="verticalAlign_middle">
                                 <Col span="4">
-                                    <img class="mr_headimg user-avatar" id="userpic"
-                                         src="//www.lgstatic.com/i/image/M00/BA/E7/CgqKkVjGPu2ACQuoAABNstySON8414.jpg"
-                                         width="120" height="120" alt="头像">
+                                    <img class="mr_headimg" id="userpic"
+                                         src="//www.lgstatic.com/i/image/M00/BA/E7/CgqKkVjGPu2ACQuoAABNstySON8414.jpg" alt="头像">
                                 </Col>
                                 <Col span="20" :style="{paddingLeft: '2rem', fontSize: '1.2rem'}">
                                     <div class="basic-info">
@@ -153,7 +152,7 @@
                                 <h2 class="second_title">
                                     社交主页
                                 </h2>
-                                <Row>
+                                <Row :style="{overflow: 'hidden'}">
                                     <div style="padding-left: 2rem; margin-bottom: 1rem;"  class="verticalAlign_middle">
                                         <img src="https://www.lgstatic.com/common/image/social/default@2x.png"
                                              alt="My Website" style="min-height: 2rem; margin-right: 1rem;">
@@ -263,6 +262,11 @@ export default {
         img.logo{
             width: 80%;
             max-width: 4rem;
+        }
+
+        .mr_headimg{
+            width: 100%;
+            min-width: 4rem;
         }
     }
 

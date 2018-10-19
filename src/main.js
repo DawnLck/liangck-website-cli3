@@ -2,6 +2,9 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 
+import axios from 'axios'
+import VueAxios from 'vue-axios'
+
 // import Vue from 'vue'
 import {
   // 布局
@@ -29,6 +32,7 @@ import {
 
 // import iView from 'iview'
 import 'iview/dist/styles/iview.css'
+Vue.use(VueAxios, axios)
 
 // Vue.use(iView)
 /* 布局 */

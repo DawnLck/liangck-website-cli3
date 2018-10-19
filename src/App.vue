@@ -239,14 +239,12 @@ export default {
     #toggleMenu{
         height: 0;
         min-height: 0;
-        opacity: 0;
         transition: height 600ms ease-out;
         overflow: hidden;
-        border-top: 1px solid $primary;
+
         &.on{
-            display: inline-block;
             height: 10rem;
-            opacity: 1;
+            border-top: 1px solid $primary;
         }
         .toggleMenu-item{
             width: 100%;
